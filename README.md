@@ -28,16 +28,16 @@ For production use `pnpm start`. The client and API use the same database name. 
 
 ## Routes
 
-| Method | Path | Access | Purpose |
-| --- | --- | --- | --- |
-| GET | `/books` | Public; `mine=true` requires JWT | Catalogue; optional `limit=6`; newest first |
-| GET | `/books/:id` | JWT | Book details |
-| POST | `/books` | JWT | Add a book |
-| PATCH | `/books/:id` | Owner | Replace editable book fields |
-| DELETE | `/books/:id` | Owner | Remove a book with no active loans |
-| POST | `/borrows` | JWT | Borrow `{ "bookId": "…" }` for 14 days |
-| GET | `/borrows` | JWT | Current user's active borrows |
-| DELETE | `/borrows/:id` | Borrower | Return a book |
+| Method | Path           | Access                           | Purpose                                     |
+| ------ | -------------- | -------------------------------- | ------------------------------------------- |
+| GET    | `/books`       | Public; `mine=true` requires JWT | Catalogue; optional `limit=6`; newest first |
+| GET    | `/books/:id`   | JWT                              | Book details                                |
+| POST   | `/books`       | JWT                              | Add a book                                  |
+| PATCH  | `/books/:id`   | Owner                            | Replace editable book fields                |
+| DELETE | `/books/:id`   | Owner                            | Remove a book with no active loans          |
+| POST   | `/borrows`     | JWT                              | Borrow `{ "bookId": "…" }` for 14 days      |
+| GET    | `/borrows`     | JWT                              | Current user's active borrows               |
+| DELETE | `/borrows/:id` | Borrower                         | Return a book                               |
 
 Protected requests use `Authorization: Bearer <token>`. Obtain a short-lived token from the logged-in client's BetterAuth `/api/auth/token` endpoint. The API never trusts submitted user names, email addresses, or ownership IDs.
 
