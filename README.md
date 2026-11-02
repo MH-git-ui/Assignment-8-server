@@ -53,6 +53,10 @@ Tests download a MongoDB binary on first use, start a temporary replica set, and
 
 ## Deployment
 
-Deploy to a Node-compatible service such as Render with `pnpm install --frozen-lockfile` and `pnpm start`. Supply environment variables from `.env.example`, use HTTPS production client URLs, and use a MongoDB replica set. If deploying behind a proxy, configure Express trust-proxy only for the host's verified proxy topology before relying on per-IP rate limits. The public `/books` endpoint can be used as a readiness probe.
+On Vercel, import this repository using the Express preset. The root `app.js` exports the application and opens its MongoDB connection lazily on the first request; concurrent requests share the connection pool. Configure all variables from `.env.example` before using the API. The local `pnpm start` command continues to run a normal HTTP listener.
+
+Alternatively, deploy to a Node-compatible service such as Render with `pnpm install --frozen-lockfile` and `pnpm start`. Supply environment variables from `.env.example`, use HTTPS production client URLs, and use a MongoDB replica set. If deploying behind a proxy, configure Express trust-proxy only for the host's verified proxy topology before relying on per-IP rate limits. The public `/books` endpoint can be used as a readiness probe.
 
 **Live API URL:** Not deployed yet. MongoDB configuration and hosting remain required. See the client repository's SETUP.md for the coordinated service setup.
+
+Rate limits are per running instance; distributed deployments should also use host-level rate limiting.

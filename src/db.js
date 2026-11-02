@@ -1,10 +1,15 @@
 import { MongoClient } from "mongodb";
 export async function connectDatabase(config) {
   const client = new MongoClient(config.uri);
-  await client.connect();
-  const db = client.db(config.database);
-  await createIndexes(db);
-  return { client, db };
+  try {
+    await client.connect();
+    const db = client.db(config.database);
+    await createIndexes(db);
+    return { client, db };
+  } catch (error) {
+    await client.close();
+    throw error;
+  }
 }
 export async function createIndexes(db) {
   await Promise.all([
