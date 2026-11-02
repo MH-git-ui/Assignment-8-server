@@ -1,6 +1,15 @@
 # BookNook API
 
-Express and MongoDB backend for [BookNook](https://github.com/MH-git-ui/Assignment-8). Requires Node.js 22+ and a MongoDB replica set (MongoDB Atlas is suitable).
+Express and MongoDB backend for [BookNook](https://booknook-assignment-8.vercel.app). Requires Node.js 22+ and a MongoDB replica set (MongoDB Atlas is suitable).
+
+## Live project links
+
+- **Website:** [BookNook](https://booknook-assignment-8.vercel.app)
+- **Public book catalogue API:** [GET /books](https://booknook-assignment-8-server.vercel.app/books)
+- **Client repository:** [MH-git-ui/Assignment-8](https://github.com/MH-git-ui/Assignment-8)
+- **Server repository:** [MH-git-ui/Assignment-8-server](https://github.com/MH-git-ui/Assignment-8-server)
+
+The server root is not a web page. It intentionally returns a JSON “endpoint does not exist” message; use `/books` for the public catalogue.
 
 ## Features
 
@@ -67,7 +76,7 @@ On Vercel, import this repository using the Express preset. The root `app.js` ex
 
 Alternatively, deploy to a Node-compatible service such as Render with `pnpm install --frozen-lockfile` and `pnpm start`. Supply environment variables from `.env.example`, use HTTPS production client URLs, and use a MongoDB replica set. If deploying behind a proxy, configure Express trust-proxy only for the host's verified proxy topology before relying on per-IP rate limits. The public `/books` endpoint can be used as a readiness probe.
 
-**Live API URL:** https://booknook-assignment-8-server.vercel.app
+**Live catalogue endpoint:** [https://booknook-assignment-8-server.vercel.app/books](https://booknook-assignment-8-server.vercel.app/books)
 
 Production was verified on 2 November 2026: Atlas connection/indexes, remote BetterAuth JWT verification, book CRUD, borrowing, duplicate prevention, and return/copy restoration all passed. Test book and account records were cleaned up. The client is https://booknook-assignment-8.vercel.app.
 
