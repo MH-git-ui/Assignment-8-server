@@ -26,6 +26,16 @@ pnpm dev
 
 For production use `pnpm start`. The client and API use the same database name. `AUTH_ISSUER` must exactly match the client's `BETTER_AUTH_URL`; `JWKS_URL` points to its `/api/auth/jwks`. Do not expose the MongoDB URI or BetterAuth secret to browsers. Google OAuth and image uploading are handled in Next.js, not here.
 
+## Initial catalogue
+
+After configuring `.env`, run the following once to add BookNook's eight community-library books:
+
+```sh
+pnpm seed
+```
+
+The script is safe to re-run: it inserts only missing seed records and never resets the available-copy count of a book already borrowed. These books are borrowable community-library titles, not products for sale.
+
 ## Routes
 
 | Method | Path           | Access                           | Purpose                                     |
